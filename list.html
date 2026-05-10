@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資訊列表 - 臺灣臺島地方檢察署</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header { background-color: var(--primary-dark); color: white; padding: 40px 0; margin-bottom: 40px; }
+        .page-header h1 { font-size: 2rem; }
+        .list-container { max-width: 1000px; margin: 0 auto 60px; background: var(--bg-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 40px; }
+        .filter-tabs { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 25px; }
+        .filter-btn { background-color: #924E19; color: white; border: none; padding: 10px 20px; font-size: 1rem; cursor: pointer; border-radius: 3px; transition: background-color 0.2s; }
+        .filter-btn:hover, .filter-btn.active { background-color: #6C3810; }
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th, .data-table td { border: 1px solid #eaeaea; padding: 15px; text-align: left; }
+        .data-table th { font-weight: 600; color: #333; }
+        .data-table a { color: var(--text-main); text-decoration: none; transition: color 0.2s; }
+        .data-table a:hover { color: var(--primary-color); }
+        .seq-col { width: 80px; text-align: center !important; }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="nav-container container">
+            <a href="index.html" class="logo">
+                <div class="logo-img-placeholder"><i class="fa-solid fa-scale-balanced"></i></div>
+                <div class="logo-text">
+                    <h1>臺灣臺島地方檢察署</h1>
+                </div>
+            </a>
+            <div class="search-box">
+                <input type="text" placeholder="全站搜尋..." aria-label="全站搜尋">
+                <button aria-label="搜尋"><i class="fa-solid fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <div class="page-header">
+            <div class="container">
+                <h1 id="pageTitle">資訊列表</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="list-container" id="listContent">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const listType = params.get('type') || 'all';
+            
+            const titles = {
+                'news': '新聞稿及最新消息',
+                'board': '電子公布欄',
+                'notice': '公示送達',
+                'auction': '查扣物拍賣專區',
+                'downloads': '書狀例稿下載',
+                'all': '所有公告'
+            };
+            
+            document.getElementById('pageTitle').textContent = titles[listType] || '資訊列表';
+            document.title = (titles[listType] || '資訊列表') + ' - 臺灣臺島地方檢察署';
+
+            const container = document.getElementById('listContent');
+            
+            // Add filter tabs
+            let html = `
+                <div class="filter-tabs">
+                    <button class="filter-btn active">全部</button>
+                    <button class="filter-btn">書類</button>
+                    <button class="filter-btn">傳票命令</button>
+                    <button class="filter-btn">發還保證金</button>
+                    <button class="filter-btn">扣押物（贓證物）拍賣或發還</button>
+                    <button class="filter-btn">其他</button>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th class="seq-col">序號</th>
+                            <th>標題</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            let seq = 1;
+            if (listType === 'notice' || listType === 'all') {
+                html += `
+                        <tr>
+                            <td class="seq-col">${seq++}</td>
+                            <td><a href="#">115年度他字第11505001號 被告顧雍冰 等罪案件 公示送達傳票</a></td>
+                        </tr>
+                `;
+            }
+
+            for(let i=1; i<=10; i++) {
+                let title = `【${titles[listType]}】第 ${i} 號公告事項`;
+                if(listType === 'downloads') title = `書狀範例：第 ${i} 類聲請狀空白表單 (PDF/Word)`;
+                if(listType === 'auction') title = `113年度第 ${i} 次查扣物（汽機車、黃金）變價拍賣公告`;
+                
+                html += `
+                        <tr>
+                            <td class="seq-col">${seq++}</td>
+                            <td><a href="content.html?page=detail">${title}</a></td>
+                        </tr>
+                `;
+            }
+            
+            html += `
+                    </tbody>
+                </table>
+            `;
+            container.innerHTML = html;
+        });
+    </script>
+</body>
+</html>
