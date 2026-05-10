@@ -192,28 +192,24 @@
             // --- 書狀例稿下載 ---
             } else if (listType === 'downloads') {
                 const docList = [
-                    { name: '刑事聲請狀',           url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
-                    { name: '刑事告訴狀',           url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
-                    { name: '聲請變更期日應訊狀',   url: 'https://www.poes.moj.gov.tw/mojes/apply/Esd06.init.ctr?type=NONCERT' },
-                    { name: '被告聲請再議',         url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
-                    { name: '聲請檢察官提起上訴狀', url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
-                    { name: '委任狀',               url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
-                    { name: '聲請傳喚證人／鑑定人狀', url: 'https://www.poes.moj.gov.tw/mojes/apply/Esd05.init.ctr?type=NONCERT' },
-                    { name: '和解書',               url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
-                    { name: '聲請撤銷通緝狀',       url: 'https://www.poes.moj.gov.tw/mojes/apply/Esd07.init.ctr?type=NONCERT' },
-                    { name: '刑事答辯狀',           url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
+                    { name: '刑事聲請狀',           file: 'docs/刑事聲請狀.doc' },
+                    { name: '刑事告訴狀',           file: 'docs/刑事告訴狀.doc' },
+                    { name: '聲請變更期日應訊狀',   file: 'docs/聲請變更期日應訊狀.doc' },
+                    { name: '被告聲請再議',         file: 'docs/被告聲請再議.doc' },
+                    { name: '聲請檢察官提起上訴狀', file: 'docs/聲請檢察官提起上訴狀.doc' },
+                    { name: '委任狀',               file: 'docs/委任狀.doc' },
+                    { name: '聲請傳喚證人／鑑定人狀', file: 'docs/聲請傳喚證人鑑定人狀.doc' },
+                    { name: '和解書',               file: 'docs/和解書.doc' },
+                    { name: '聲請撤銷通緝狀',       file: 'docs/聲請撤銷通緝狀.doc' },
+                    { name: '刑事答辯狀',           file: 'docs/刑事答辯狀.doc' },
                 ];
                 docList.forEach(doc => {
-                    const isOnline = doc.url.includes('poes.moj.gov.tw');
-                    const icon = isOnline
-                        ? `<i class="fa-solid fa-arrow-up-right-from-square" style="color:#0369a1;margin-right:5px;"></i>`
-                        : `<i class="fa-solid fa-file-word" style="color:#2b579a;margin-right:5px;"></i>`;
-                    const label = isOnline ? '線上申辦' : '例稿下載';
                     html += `
                         <tr>
                             <td class="seq-col">${seq++}</td>
-                            <td><a href="${doc.url}" target="_blank">${icon}${doc.name}</a></td>
-                            <td><span style="font-size:.8rem;background:${isOnline?'#dbeafe':'#f0fdf4'};color:${isOnline?'#1e40af':'#166534'};padding:2px 8px;border-radius:20px;">${label}</span></td>
+                            <td><a href="${doc.file}" download>
+                                <i class="fa-solid fa-file-word" style="color:#2b579a;margin-right:5px;"></i>${doc.name}</a></td>
+                            <td><span style="font-size:.8rem;background:#f0fdf4;color:#166534;padding:2px 8px;border-radius:20px;">例稿下載</span></td>
                         </tr>
                     `;
                 });
