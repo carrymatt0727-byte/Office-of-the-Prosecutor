@@ -67,14 +67,12 @@
                 </div>
 
                 <!-- Web3Forms Integration -->
-                <form action="https://api.web3forms.com/submit" method="POST">
+                <form id="contactForm">
                     
                     <!-- Web3Forms Access Key -->
                     <input type="hidden" name="access_key" value="98c38860-de19-4e3e-bd27-2097dac8848e">
                     
                     <input type="hidden" name="subject" value="【臺島地檢署】檢察長信箱新留言">
-                    <!-- 表單送出後，預設導回 Web3Forms 成功頁面。您可以改成自訂頁面 -->
-                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
 
                     <div class="form-group">
                         <label for="name" class="required">真實姓名</label>
@@ -99,12 +97,73 @@
                     <!-- Honeypot Spam Protection -->
                     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-                    <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> 確認送出信件</button>
+                    <button type="submit" class="submit-btn" id="submitBtn"><i class="fa-solid fa-paper-plane"></i> 確認送出信件</button>
+                    <div id="result" style="margin-top: 20px; font-weight: 500; text-align: center; display: none;"></div>
                 </form>
 
             </div>
         </div>
     </main>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const result = document.getElementById('result');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 處理中...';
+            submitBtn.disabled = true;
+            result.style.display = 'none';
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    result.innerHTML = '<i class="fa-solid fa-circle-check"></i> 您的信件已成功送出！我們會盡快處理。';
+                    result.style.color = '#0f5132';
+                    result.style.backgroundColor = '#d1e7dd';
+                    result.style.padding = '15px';
+                    result.style.borderRadius = '5px';
+                    result.style.display = 'block';
+                    form.reset();
+                } else {
+                    console.log(response);
+                    result.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> 送出失敗：' + json.message;
+                    result.style.color = '#842029';
+                    result.style.backgroundColor = '#f8d7da';
+                    result.style.padding = '15px';
+                    result.style.borderRadius = '5px';
+                    result.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                result.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> 發生錯誤，請稍後再試！';
+                result.style.color = '#842029';
+                result.style.backgroundColor = '#f8d7da';
+                result.style.padding = '15px';
+                result.style.borderRadius = '5px';
+                result.style.display = 'block';
+            })
+            .then(function() {
+                submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> 確認送出信件';
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
 
     <footer class="site-footer">
         <div class="container">

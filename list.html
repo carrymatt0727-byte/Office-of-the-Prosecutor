@@ -97,22 +97,43 @@
                 html += `
                         <tr>
                             <td class="seq-col">${seq++}</td>
-                            <td><a href="#">115年度他字第11505001號 被告顧雍冰 等罪案件 公示送達傳票</a></td>
+                            <td><a href="#">公示送達本署115年度他字第11505001號傳票乙件</a></td>
                         </tr>
                 `;
             }
 
-            for(let i=1; i<=10; i++) {
-                let title = `【${titles[listType]}】第 ${i} 號公告事項`;
-                if(listType === 'downloads') title = `書狀範例：第 ${i} 類聲請狀空白表單 (PDF/Word)`;
-                if(listType === 'auction') title = `113年度第 ${i} 次查扣物（汽機車、黃金）變價拍賣公告`;
+            if (listType === 'downloads') {
+                const docList = [
+                    '刑事聲請狀', '刑事告訴狀', '聲請撤回告訴狀', '聲請變更送達處所狀', '聲請變更期日應訊狀',
+                    '聲請查復案件進行情形狀', '告訴人聲請再議', '被告聲請再議', '聲請撤回再議狀', '聲請檢察官提起上訴狀',
+                    '緩起訴處分執行完畢證明書聲請表', '請求增(補)發書類聲請表', '聲請送達書類狀', '請求核發結案證明書聲請表', '請求補發相驗屍體證明書聲請表',
+                    '聲請移转管轄狀', '請求囑託執行聲請表', '請求准予易科罰金聲請狀', '請求准予分期繳納罰金聲請表', '請求准就殘刑繳納罰金聲請表',
+                    '請求發給執行完畢證明書聲請表', '請求發還刑事保證金聲請表', '委任書(領取保證金)', '請求發還證物扣押物聲請表', '委任書(領取證物扣押物)',
+                    '請求更定應執行刑聲請表', '請求延期執行觀察勒戒聲請表', '請求停止/延期執行聲請表', '聲請傳喚證人/鑑定人狀', '請求解除限制出境聲請表',
+                    '聲請撤銷通緝狀', '委任狀(被告)', '刑事答辯狀', '和解書', '聲請案移法院併自訴案審理狀',
+                    '請求發監執行聲請表', '檔案應用申請書', '平民法律扶助申請書', '委任狀(告訴人)', '刑事陳報狀'
+                ];
                 
-                html += `
+                docList.forEach(doc => {
+                    html += `
                         <tr>
                             <td class="seq-col">${seq++}</td>
-                            <td><a href="content.html?page=detail">${title}</a></td>
+                            <td><a href="content.html?page=detail"><i class="fa-solid fa-file-word" style="color: #2b579a; margin-right: 5px;"></i>${doc} - 例稿下載</a></td>
                         </tr>
-                `;
+                    `;
+                });
+            } else {
+                for(let i=1; i<=10; i++) {
+                    let title = `【${titles[listType]}】第 ${i} 號公告事項`;
+                    if(listType === 'auction') title = `113年度第 ${i} 次查扣物（汽機車、黃金）變價拍賣公告`;
+                    
+                    html += `
+                            <tr>
+                                <td class="seq-col">${seq++}</td>
+                                <td><a href="content.html?page=detail">${title}</a></td>
+                            </tr>
+                    `;
+                }
             }
             
             html += `

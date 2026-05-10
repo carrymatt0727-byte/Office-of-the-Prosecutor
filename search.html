@@ -21,15 +21,50 @@
 </head>
 <body>
     <header class="main-header">
+        <div class="top-bar">
+            <div class="container top-bar-inner">
+                <div class="top-links">
+                    <a href="index.html">回首頁</a>
+                    <a href="content.html?page=sitemap">網站導覽</a>
+                    <a href="contact.html">檢察長信箱</a>
+                </div>
+                <div class="font-size-controls">
+                    <span>字體大小：</span>
+                    <button class="font-btn" data-size="small">A-</button>
+                    <button class="font-btn active" data-size="medium">A</button>
+                    <button class="font-btn" data-size="large">A+</button>
+                </div>
+            </div>
+        </div>
         <div class="nav-container container">
             <a href="index.html" class="logo">
                 <div class="logo-img-placeholder"><i class="fa-solid fa-scale-balanced"></i></div>
-                <div class="logo-text"><h1>臺灣臺島地方檢察署</h1></div>
+                <div class="logo-text">
+                    <h1>臺灣臺島地方檢察署</h1>
+                    <p>Taiwan Taidao District Prosecutors Office</p>
+                </div>
             </a>
-            <div class="search-box">
-                <input type="text" id="headerSearch" placeholder="全站搜尋..." aria-label="全站搜尋">
-                <button aria-label="搜尋" onclick="const v = document.getElementById('headerSearch').value; if(v) window.location.href='search.html?q='+encodeURIComponent(v);"><i class="fa-solid fa-search"></i></button>
-            </div>
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li class="dropdown">
+                        <a href="organization.html">簡介 <i class="fa-solid fa-angle-down"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="content.html?page=service">為民服務 <i class="fa-solid fa-angle-down"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="list.html?type=info">資訊公開 <i class="fa-solid fa-angle-down"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="content.html?page=counseling">訴訟輔導 <i class="fa-solid fa-angle-down"></i></a>
+                    </li>
+                    <li><a href="content.html?page=protection" style="display:block; padding: 10px 15px; color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 1.1rem;">司法保護</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" id="headerSearch" placeholder="全站搜尋..." aria-label="全站搜尋">
+                    <button aria-label="搜尋" onclick="const v = document.getElementById('headerSearch').value; if(v) window.location.href='search.html?q='+encodeURIComponent(v);"><i class="fa-solid fa-search"></i></button>
+                </div>
+            </nav>
         </div>
     </header>
 
@@ -46,6 +81,14 @@
         </div>
     </main>
 
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Taiwan Taidao District Prosecutors Office. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -61,17 +104,17 @@
                 return;
             }
 
-            status.innerHTML = \`為您尋找「<strong>\${query}</strong>」的結果：\`;
+            status.innerHTML = `為您尋找「<strong>${query}</strong>」的結果：`;
             
             // Mock results
             let html = '';
             for(let i=1; i<=3; i++) {
-                html += \`
+                html += `
                     <div class="result-item">
-                        <h3 class="result-title"><a href="content.html?page=detail">含有「<span class="highlight">\${query}</span>」的相關網頁標題 \${i}</a></h3>
-                        <p class="result-desc">這是一段網頁摘要，其中包含了您搜尋的關鍵字 <span class="highlight">\${query}</span>，我們透過全站搜尋系統將相關的業務介紹、新聞稿或公告列出，供民眾參考。</p>
+                        <h3 class="result-title"><a href="content.html?page=detail">含有「<span class="highlight">${query}</span>」的相關網頁標題 ${i}</a></h3>
+                        <p class="result-desc">這是一段網頁摘要，其中包含了您搜尋的關鍵字 <span class="highlight">${query}</span>，我們透過全站搜尋系統將相關的業務介紹、新聞稿或公告列出，供民眾參考。</p>
                     </div>
-                \`;
+                `;
             }
             container.innerHTML = html;
         });
