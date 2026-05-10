@@ -72,16 +72,22 @@
 
             const container = document.getElementById('listContent');
             
-            // Add filter tabs
-            let html = `
-                <div class="filter-tabs">
-                    <button class="filter-btn active">全部</button>
-                    <button class="filter-btn">書類</button>
-                    <button class="filter-btn">傳票命令</button>
-                    <button class="filter-btn">發還保證金</button>
-                    <button class="filter-btn">扣押物（贓證物）拍賣或發還</button>
-                    <button class="filter-btn">其他</button>
-                </div>
+            let html = '';
+            // Add filter tabs only for notice type
+            if (listType === 'notice') {
+                html += `
+                    <div class="filter-tabs">
+                        <button class="filter-btn active">全部</button>
+                        <button class="filter-btn">書類</button>
+                        <button class="filter-btn">傳票命令</button>
+                        <button class="filter-btn">發還保證金</button>
+                        <button class="filter-btn">扣押物（贓證物）拍賣或發還</button>
+                        <button class="filter-btn">其他</button>
+                    </div>
+                `;
+            }
+            
+            html += `
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -97,7 +103,7 @@
                 html += `
                         <tr>
                             <td class="seq-col">${seq++}</td>
-                            <td><a href="#">公示送達本署115年度他字第11505001號傳票乙件</a></td>
+                            <td><a href="summons_11505001.pdf" target="_blank" title="下載 PDF 檔案"><i class="fa-solid fa-file-pdf" style="color: #d32f2f; margin-right: 5px;"></i>公示送達本署115年度他字第11505001號傳票乙件</a></td>
                         </tr>
                 `;
             }
