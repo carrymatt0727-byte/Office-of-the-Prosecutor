@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>司法保護 - 臺灣臺島地方檢察署</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header { background-color: var(--primary-dark); color: white; padding: 40px 0; margin-bottom: 40px; }
+        .page-header h1 { font-size: 2rem; }
+        .protection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .protection-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--primary-color);
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+        }
+        .protection-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="container top-bar-inner">
+                <div class="top-links">
+                    <a href="index.html">回首頁</a>
+                    <a href="content.html?page=sitemap">網站導覽</a>
+                    <a href="contact.html">檢察長信箱</a>
+                </div>
+                <div class="font-size-controls">
+                    <span>字體大小：</span>
+                    <button class="font-btn" data-size="small">A-</button>
+                    <button class="font-btn active" data-size="medium">A</button>
+                    <button class="font-btn" data-size="large">A+</button>
+                </div>
+            </div>
+        </div>
+        <div class="nav-container container">
+            <a href="index.html" class="logo">
+                <div class="logo-img-placeholder"><i class="fa-solid fa-scale-balanced"></i></div>
+                <div class="logo-text">
+                    <h1>臺灣臺島地方檢察署</h1>
+                    <p>Taiwan Taidao District Prosecutors Office</p>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li class="dropdown">
+                        <a href="organization.html">簡介 <i class="fa-solid fa-angle-down"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="content.html?page=service">為民服務 <i class="fa-solid fa-angle-down"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="list.html?type=info">資訊公開 <i class="fa-solid fa-angle-down"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="content.html?page=counseling">訴訟輔導 <i class="fa-solid fa-angle-down"></i></a>
+                    </li>
+                    <li><a href="protection.html" style="display:block; padding: 10px 15px; color: var(--primary-color); text-decoration: none; font-weight: 700; font-size: 1.1rem;">司法保護</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" id="headerSearch" placeholder="全站搜尋..." aria-label="全站搜尋">
+                    <button aria-label="搜尋" onclick="const v = document.getElementById('headerSearch').value; if(v) window.location.href='search.html?q='+encodeURIComponent(v);"><i class="fa-solid fa-search"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <div class="page-header">
+            <div class="container">
+                <h1>司法保護</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="protection-grid">
+                <div class="protection-card">
+                    <div class="card-icon"><i class="fa-solid fa-file-signature"></i></div>
+                    <div class="card-title">緩起訴處分專區</div>
+                    <div class="card-desc">提供緩起訴處分金申請流程、義務勞務執行流程說明，以及毒品戒癮治療等相關公告與資訊。</div>
+                    <ul style="list-style: none; padding: 0; margin-top: 20px; border-top: 1px solid #eaeaea; padding-top: 15px;">
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: var(--primary-dark); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--primary-dark)'"><i class="fa-solid fa-angle-right" style="color: var(--primary-color); margin-right: 5px;"></i> 緩起訴處分金申請流程及公告</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: var(--primary-dark); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--primary-dark)'"><i class="fa-solid fa-angle-right" style="color: var(--primary-color); margin-right: 5px;"></i> 緩起訴處分及義務勞務執行流程</a></li>
+                        <li><a href="#" style="color: var(--primary-dark); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--primary-dark)'"><i class="fa-solid fa-angle-right" style="color: var(--primary-color); margin-right: 5px;"></i> 毒品戒癮治療專區</a></li>
+                    </ul>
+                </div>
+                
+                <div class="protection-card">
+                    <div class="card-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
+                    <div class="card-title">修復式司法專區</div>
+                    <div class="card-desc">推動修復式司法理念，提供相關表單下載、宣導資訊及案例分享，促進加害人與被害人之間的對話與修復。</div>
+                    <ul style="list-style: none; padding: 0; margin-top: 20px; border-top: 1px solid #eaeaea; padding-top: 15px;">
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: var(--primary-dark); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--primary-dark)'"><i class="fa-solid fa-angle-right" style="color: var(--primary-color); margin-right: 5px;"></i> 何謂修復式司法</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: var(--primary-dark); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--primary-dark)'"><i class="fa-solid fa-angle-right" style="color: var(--primary-color); margin-right: 5px;"></i> 相關表單下載</a></li>
+                        <li><a href="#" style="color: var(--primary-dark); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--primary-dark)'"><i class="fa-solid fa-angle-right" style="color: var(--primary-color); margin-right: 5px;"></i> 分享專區</a></li>
+                    </ul>
+                </div>
+                
+                <div class="protection-card">
+                    <div class="card-icon"><i class="fa-solid fa-person-digging"></i></div>
+                    <div class="card-title">社會勞動專區</div>
+                    <div class="card-desc">包含易服社會勞動制度說明、執行流程圖、遴聘社會勞動機構相關事宜及最新訊息公告。</div>
+                    <ul style="list-style: none; padding: 0; margin-top: 20px; border-top: 1px solid #eaeaea; padding-top: 15px;">
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: var(--primary-dark); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--primary-dark)'"><i class="fa-solid fa-angle-right" style="color: var(--primary-color); margin-right: 5px;"></i> 社會勞動制度說明</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: var(--primary-dark); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--primary-dark)'"><i class="fa-solid fa-angle-right" style="color: var(--primary-color); margin-right: 5px;"></i> 易服社會勞動案件執行流程圖</a></li>
+                        <li><a href="#" style="color: var(--primary-dark); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--primary-dark)'"><i class="fa-solid fa-angle-right" style="color: var(--primary-color); margin-right: 5px;"></i> 遴聘社會勞動機構相關事宜公告</a></li>
+                    </ul>
+                </div>
+
+                <div class="protection-card">
+                    <div class="card-icon"><i class="fa-solid fa-tower-broadcast"></i></div>
+                    <div class="card-title">被害人刑事訴訟資訊獲知平台</div>
+                    <div class="card-desc">保障被害人權益，提供單一窗口讓被害人能及時掌握案件偵查進度與相關訴訟資訊。</div>
+                    <ul style="list-style: none; padding: 0; margin-top: 20px; border-top: 1px solid #eaeaea; padding-top: 15px;">
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: var(--primary-dark); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--primary-dark)'"><i class="fa-solid fa-angle-right" style="color: var(--primary-color); margin-right: 5px;"></i> 平台簡介與服務說明</a></li>
+                        <li style="margin-bottom: 12px;"><a href="https://naps.moj.gov.tw/" target="_blank" style="color: var(--primary-dark); text-decoration: none; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--primary-dark)'"><i class="fa-solid fa-external-link-alt" style="color: var(--primary-color); margin-right: 5px;"></i> 進入法務部資訊獲知平台</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Taiwan Taidao District Prosecutors Office. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
