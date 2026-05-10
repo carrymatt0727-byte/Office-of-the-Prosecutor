@@ -192,22 +192,28 @@
             // --- 書狀例稿下載 ---
             } else if (listType === 'downloads') {
                 const docList = [
-                    '刑事聲請狀','刑事告訴狀','聲請撤回告訴狀','聲請變更送達處所狀','聲請變更期日應訊狀',
-                    '聲請查復案件進行情形狀','告訴人聲請再議','被告聲請再議','聲請撤回再議狀','聲請檢察官提起上訴狀',
-                    '緩起訴處分執行完畢證明書聲請表','請求增(補)發書類聲請表','聲請送達書類狀','請求核發結案證明書聲請表','請求補發相驗屍體證明書聲請表',
-                    '聲請移轉管轄狀','請求囑託執行聲請表','請求准予易科罰金聲請狀','請求准予分期繳納罰金聲請表','請求准就殘刑繳納罰金聲請表',
-                    '請求發給執行完畢證明書聲請表','請求發還刑事保證金聲請表','委任書(領取保證金)','請求發還證物扣押物聲請表','委任書(領取證物扣押物)',
-                    '請求更定應執行刑聲請表','請求延期執行觀察勒戒聲請表','請求停止/延期執行聲請表','聲請傳喚證人/鑑定人狀','請求解除限制出境聲請表',
-                    '聲請撤銷通緝狀','委任狀(被告)','刑事答辯狀','和解書','聲請案移法院併自訴案審理狀',
-                    '請求發監執行聲請表','檔案應用申請書','平民法律扶助申請書','委任狀(告訴人)','刑事陳報狀'
+                    { name: '刑事聲請狀',           url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
+                    { name: '刑事告訴狀',           url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
+                    { name: '聲請變更期日應訊狀',   url: 'https://www.poes.moj.gov.tw/mojes/apply/Esd06.init.ctr?type=NONCERT' },
+                    { name: '被告聲請再議',         url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
+                    { name: '聲請檢察官提起上訴狀', url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
+                    { name: '委任狀',               url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
+                    { name: '聲請傳喚證人／鑑定人狀', url: 'https://www.poes.moj.gov.tw/mojes/apply/Esd05.init.ctr?type=NONCERT' },
+                    { name: '和解書',               url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
+                    { name: '聲請撤銷通緝狀',       url: 'https://www.poes.moj.gov.tw/mojes/apply/Esd07.init.ctr?type=NONCERT' },
+                    { name: '刑事答辯狀',           url: 'https://www.tcc.moj.gov.tw/295804/295875/994742/995210/' },
                 ];
                 docList.forEach(doc => {
+                    const isOnline = doc.url.includes('poes.moj.gov.tw');
+                    const icon = isOnline
+                        ? `<i class="fa-solid fa-arrow-up-right-from-square" style="color:#0369a1;margin-right:5px;"></i>`
+                        : `<i class="fa-solid fa-file-word" style="color:#2b579a;margin-right:5px;"></i>`;
+                    const label = isOnline ? '線上申辦' : '例稿下載';
                     html += `
                         <tr>
                             <td class="seq-col">${seq++}</td>
-                            <td><a href="https://www.tcc.moj.gov.tw/295804/295875/994742/995210/" target="_blank">
-                                <i class="fa-solid fa-file-word" style="color:#2b579a;margin-right:5px;"></i>${doc} - 例稿下載</a></td>
-                            <td>—</td>
+                            <td><a href="${doc.url}" target="_blank">${icon}${doc.name}</a></td>
+                            <td><span style="font-size:.8rem;background:${isOnline?'#dbeafe':'#f0fdf4'};color:${isOnline?'#1e40af':'#166534'};padding:2px 8px;border-radius:20px;">${label}</span></td>
                         </tr>
                     `;
                 });
